@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!--
+    Generates inertial tag for a mesh link based on meshlab output.
+      scaling - temporary scaling applied in meshlab to increase precision.
+      x, y, z - center of mass.
+      ixx..izz - above-diagonal elements of the inertia tensor.
+  -->
+  <xacro:macro name="mesh_inertia"
+               params="mass scaling volume
+                       x y z ixx ixy ixz iyy iyz izz">
+    <inertial>
+      <mass value="${mass}"/>
+      <origin xyz="${x / scaling} ${y / scaling} ${z / scaling}"/>
+      <xacro:property name="inertia_scaling"
+                      value="${mass / volume / scaling**2}"/>
+      <inertia
+        ixx="${ixx * inertia_scaling}" ixy="${ixy * inertia_scaling}"
+        ixz="${ixz * inertia_scaling}" iyy="${iyy * inertia_scaling}"
+        iyz="${iyz * inertia_scaling}" izz="${izz * inertia_scaling}"
+      />
+    </inertial>
+  </xacro:macro>
+</robot>
