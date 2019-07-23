@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find robocake_description)/launch/upload.launch"/>
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find robocake_description)/launch/robocake.rviz"/>
+</launch>

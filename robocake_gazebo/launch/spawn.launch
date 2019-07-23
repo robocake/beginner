@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find robocake_description)/launch/upload.launch"/>
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 1 -urdf -model robocake -param robot_description"/>
+</launch>
