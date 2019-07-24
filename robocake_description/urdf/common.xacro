@@ -1,10 +1,26 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="mesh_geometry" params="name">
+    <visual>
+      <geometry>
+        <mesh
+          filename="package://robocake_description/meshes/visual/${name}.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh
+          filename="package://robocake_description/meshes/collision/${name}.stl"/>
+      </geometry>
+    </collision>
+  </xacro:macro>
+
   <!--
-    Generates inertial tag for a mesh link based on meshlab output.
-      scaling - temporary scaling applied in meshlab to increase precision.
-      x, y, z - center of mass.
-      ixx..izz - above-diagonal elements of the inertia tensor.
+      Generates inertial tag for a mesh link based on meshlab output.
+        scaling - temporary scaling applied in meshlab to increase precision.
+        x, y, z - center of mass.
+        ixx..izz - above-diagonal elements of the inertia tensor.
   -->
   <xacro:macro name="mesh_inertia"
                params="mass scaling volume

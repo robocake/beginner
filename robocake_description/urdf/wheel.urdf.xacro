@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="wheel" params="prefix reflect">
+    <link name="${prefix}_wheel">
+      <xacro:mesh_geometry name="wheel"/>
+      <xacro:mesh_inertia mass="1" scaling="10" volume="0.015433"
+                          x="-0.003304" y="0.000294" z="-0.000018"
+                          ixx="0.000468" ixy="0"         ixz="0"
+                                         iyy="0.000274"  iyz="0"
+                                                         izz="0.000274"/>
+    </link>
+
+    <joint name="${prefix}_wheel_to_base" type="continuous">
+      <parent link="base"/>
+      <origin xyz="-0.001 ${reflect * 0.043} -0.025" rpy="0 0 ${reflect * pi / 2}"/>
+      <child link="${prefix}_wheel"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:wheel prefix="left" reflect="1"/>
+  <xacro:wheel prefix="right" reflect="-1"/>
+
+</robot>
