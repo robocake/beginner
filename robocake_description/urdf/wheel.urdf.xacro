@@ -4,11 +4,11 @@
   <xacro:macro name="wheel" params="prefix reflect">
     <link name="${prefix}_wheel">
       <xacro:mesh_geometry name="wheel"/>
-      <xacro:mesh_inertia mass="1" scaling="10" volume="0.015433"
-                          x="-0.003304" y="0.000294" z="-0.000018"
-                          ixx="0.000468" ixy="0"         ixz="0"
-                                         iyy="0.000274"  iyz="0"
-                                                         izz="0.000274"/>
+      <xacro:mesh_inertia mass="1" scaling="10" volume="0.015398"
+                          x="0.010317" y="-0.000085" z="-0.000002"
+                          ixx="0.000466" ixy="0"         ixz="0"
+                                         iyy="0.000272"  iyz="0"
+                                                         izz="0.000272"/>
     </link>
 
     <joint name="${prefix}_wheel_to_base" type="continuous">

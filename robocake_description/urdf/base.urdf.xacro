@@ -2,10 +2,10 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robocake">
   <link name="base">
     <xacro:mesh_geometry name="base"/>
-    <xacro:mesh_inertia mass="1" scaling="10" volume="0.214749"
-                        x="0.006736" y="-0.000233" z="-0.023669"
-                        ixx="0.057916" ixy="-0.000012" ixz="0.000804"
-                                       iyy="0.059992"  iyz="-0.000007"
-                                                       izz="0.085993"/>
+    <xacro:mesh_inertia mass="1" scaling="10" volume="0.216312"
+                        x="0.006792" y="-0.000125" z="0.013660"
+                        ixx="0.058219" ixy="-0.000005" ixz="0.000802"
+                                       iyy="0.061790"  iyz="-0.000001"
+                                                       izz="0.087097"/>
   </link>
 </robot>
