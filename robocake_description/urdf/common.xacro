@@ -11,7 +11,7 @@
     <collision>
       <geometry>
         <mesh
-          filename="package://robocake_description/meshes/collision/${name}.stl"/>
+          filename="package://robocake_description/meshes/collision/${name}.dae"/>
       </geometry>
     </collision>
   </xacro:macro>
