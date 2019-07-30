@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<launch>
+  <rosparam command="load"
+            file="$(find robocake_controllers)/config/diffdrive.yaml"
+            ns="diff_drive_controller"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="diff_drive_controller"/>
+</launch>

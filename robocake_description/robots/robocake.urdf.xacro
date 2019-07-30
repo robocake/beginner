@@ -9,4 +9,10 @@
   <xacro:include
     filename="$(find robocake_description)/urdf/casters.urdf.xacro"/>
 
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
 </robot>

@@ -15,8 +15,17 @@
       <parent link="base"/>
       <origin xyz="0.00002 ${reflect * 0.042459} -0.020922"
               rpy="0 0 ${reflect * pi / 2}"/>
+      <axis xyz="${reflect} 0 0"/>
       <child link="${prefix}_wheel"/>
     </joint>
+
+    <transmission name="${prefix}_wheel_transmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="${prefix}_wheel_actuator"/>
+      <joint name="${prefix}_wheel_to_base">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
   </xacro:macro>
 
   <xacro:wheel prefix="left" reflect="1"/>
