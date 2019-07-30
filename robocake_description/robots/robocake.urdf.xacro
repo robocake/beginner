@@ -6,5 +6,7 @@
   <xacro:include filename="$(find robocake_description)/urdf/base.urdf.xacro"/>
   <xacro:include
     filename="$(find robocake_description)/urdf/wheels.urdf.xacro"/>
+  <xacro:include
+    filename="$(find robocake_description)/urdf/casters.urdf.xacro"/>
 
 </robot>
