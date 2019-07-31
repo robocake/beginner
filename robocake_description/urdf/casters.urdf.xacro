@@ -11,10 +11,26 @@
                                                          izz="0.129104"/>
     </link>
 
-    <joint name="${prefix}_caster_to_base" type="continuous">
+    <joint name="${prefix}_caster_x" type="continuous">
       <parent link="base"/>
       <origin xyz="${reflect * 0.049191} 0 -0.036909"/>
+      <axis xyz="1 0 0"/>
+      <child link="${prefix}_caster_x_to_y"/>
+    </joint>
+
+    <xacro:dummy_link name="${prefix}_caster_x_to_y"/>
+
+    <joint name="${prefix}_caster_y" type="continuous">
+      <parent link="${prefix}_caster_x_to_y"/>
       <axis xyz="0 1 0"/>
+      <child link="${prefix}_caster_y_to_z"/>
+    </joint>
+
+    <xacro:dummy_link name="${prefix}_caster_y_to_z"/>
+
+    <joint name="${prefix}_caster_z" type="continuous">
+      <parent link="${prefix}_caster_y_to_z"/>
+      <axis xyz="0 0 1"/>
       <child link="${prefix}_caster"/>
     </joint>
   </xacro:macro>

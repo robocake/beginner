@@ -50,4 +50,21 @@
       />
     </inertial>
   </xacro:macro>
+
+  <!--
+      Creates a dummy link with no geometry, low mass and low inertia. Used for
+      emulating joints with multiple rotation axes. Gazebo requires mass and
+      inertial tensor to be non-zero, otherwise the link is not created in the
+      simulation at all or behaves incorrectly.
+  -->
+  <xacro:macro name="dummy_link" params="name">
+    <link name="${name}">
+      <inertial>
+        <mass value="0.001"/>
+        <inertia ixx="1e-12" ixy="0"     ixz="0"
+                             iyy="1e-12" iyz="0"
+                                         izz="1e-12"/>
+      </inertial>
+    </link>
+  </xacro:macro>
 </robot>
