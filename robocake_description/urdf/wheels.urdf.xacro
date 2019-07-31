@@ -4,7 +4,7 @@
   <xacro:macro name="wheel" params="prefix reflect">
     <link name="${prefix}_wheel">
       <xacro:mesh_geometry name="wheel"/>
-      <xacro:mesh_inertia mass="1" scaling="10" volume="0.015398"
+      <xacro:mesh_inertia mass="0.03" scaling="10" volume="0.015398"
                           x="0.010317" y="-0.000083" z="-0.000017"
                           ixx="0.000466" ixy="0"         ixz="0"
                                          iyy="0.000272"  iyz="0"
