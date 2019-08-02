@@ -61,7 +61,58 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        back_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_caster_x_to_y:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        back_caster_y_to_z:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_caster:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_caster_x_to_y:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        front_caster_y_to_z:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        proximity_front:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        proximity_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        proximity_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -72,6 +123,36 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 100
+      Topic: /proximity_front
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 100
+      Topic: /proximity_left
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: true
+      Name: Range
+      Queue Size: 100
+      Topic: /proximity_right
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

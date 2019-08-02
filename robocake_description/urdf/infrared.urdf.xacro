@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robocake">
+
+  <!--
+      SHARP GP2Y0D805Z0F infrared sensor.
+      See https://www.pololu.com/file/0J284/GP2Y0D805Z0F.pdf
+  -->
+  <xacro:macro name="infrared" params="side reflect">
+    <link name="proximity_${side}">
+      <xacro:mesh_geometry name="infrared"/>
+      <xacro:mesh_inertia mass="0.01" scaling="100" volume="0.943720"
+                        x="0.006637" y="-0.000480" z="-0.183167"
+                        ixx="0.236973" ixy="-0.000042" ixz="-0.005641"
+                                       iyy="0.270439"  iyz="-0.000115"
+                                                       izz="0.120043"/>
+    </link>
+
+    <joint name="proximity_${side}_to_base" type="fixed">
+      <parent link="base"/>
+      <origin xyz="0.035447 ${reflect * -0.06118} 0.005715"
+              rpy="0 0 ${reflect * 5 / 3 * pi}"/>
+      <child link="proximity_${side}"/>
+    </joint>
+
+    <!--
+        min_range is set due to the sensor's model being partially obscured by
+        the chassis. With min_range set to zero, the chassis would be within the
+        sensor's range.
+    -->
+    <xacro:gazebo_sensor name="proximity_${side}" angle="${2 / 180 * pi}"
+                         min_range="0.005941" max_range="0.05" type="infrared"/>
+  </xacro:macro>
+
+  <xacro:infrared side="left" reflect="1"/>
+  <xacro:infrared side="right" reflect="-1"/>
+
+</robot>

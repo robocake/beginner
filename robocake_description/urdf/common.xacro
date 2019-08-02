@@ -68,20 +68,26 @@
     </link>
   </xacro:macro>
 
+  <!--
+      Gazebo doesn't seem to directly support non-laser sensors, so this is
+      implemented as a laser with multiple samples. 3 samples (left/center/right
+      for horizontal, bottom/center/top for vertical) seem to work well enough
+      for small angles.
+  -->
   <xacro:macro name="gazebo_sensor"
-               params="name angle:=0 min_range max_range samples:=1 type">
+               params="name angle min_range max_range type">
     <gazebo reference="${name}">
       <sensor type="ray" name="${name}_sensor">
         <visualize>true</visualize>
         <ray>
           <scan>
             <horizontal>
-              <samples>${samples}</samples>
+              <samples>3</samples>
               <min_angle>${-angle / 2}</min_angle>
               <max_angle>${angle / 2}</max_angle>
             </horizontal>
             <vertical>
-              <samples>${samples}</samples>
+              <samples>3</samples>
               <min_angle>${-angle / 2}</min_angle>
               <max_angle>${angle / 2}</max_angle>
             </vertical>
