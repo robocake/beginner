@@ -4,14 +4,26 @@
   <xacro:include filename="$(find robocake_description)/urdf/common.xacro"/>
 
   <xacro:include filename="$(find robocake_description)/urdf/base.urdf.xacro"/>
+  <xacro:include filename="$(find robocake_description)/urdf/wheel.urdf.xacro"/>
   <xacro:include
-    filename="$(find robocake_description)/urdf/wheels.urdf.xacro"/>
-  <xacro:include
-    filename="$(find robocake_description)/urdf/casters.urdf.xacro"/>
+    filename="$(find robocake_description)/urdf/caster.urdf.xacro"/>
   <xacro:include
     filename="$(find robocake_description)/urdf/ultrasonic.urdf.xacro"/>
   <xacro:include
     filename="$(find robocake_description)/urdf/infrared.urdf.xacro"/>
+
+  <xacro:base/>
+
+  <xacro:wheel prefix="left" reflect="1"/>
+  <xacro:wheel prefix="right" reflect="-1"/>
+
+  <xacro:caster prefix="front" reflect="1"/>
+  <xacro:caster prefix="back" reflect="-1"/>
+
+  <xacro:ultrasonic/>
+
+  <xacro:infrared side="left" reflect="1"/>
+  <xacro:infrared side="right" reflect="-1"/>
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

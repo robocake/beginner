@@ -66,7 +66,7 @@
   -->
   <xacro:macro name="gazebo_sensor"
                params="name angle min_range max_range type">
-    <gazebo reference="${name}">
+    <gazebo reference="${name}_link">
       <sensor type="ray" name="${name}_sensor">
         <visualize>true</visualize>
         <ray>
@@ -89,7 +89,7 @@
         </ray>
         <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
           <topicName>${name}</topicName>
-          <frameName>${name}</frameName>
+          <frameName>${name}_link</frameName>
           <fov>${angle}</fov>
           <radiation>${type}</radiation>
         </plugin>

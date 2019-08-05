@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robocake">
-
   <!--
       SHARP GP2Y0D805Z0F infrared sensor.
       See https://www.pololu.com/file/0J284/GP2Y0D805Z0F.pdf
   -->
   <xacro:macro name="infrared" params="side reflect">
-    <link name="proximity_${side}">
+    <link name="proximity_${side}_link">
       <xacro:mesh_visual name="infrared"/>
       <collision>
         <origin xyz="0.001551 -0.000007 -0.001367"/>
@@ -21,11 +20,11 @@
                                                        izz="0.120043"/>
     </link>
 
-    <joint name="proximity_${side}_to_base" type="fixed">
-      <parent link="base"/>
+    <joint name="proximity_${side}_joint" type="fixed">
+      <parent link="base_link"/>
       <origin xyz="0.034096 ${reflect * -0.058848} 0.005497"
               rpy="0 0 ${reflect * 5 / 3 * pi}"/>
-      <child link="proximity_${side}"/>
+      <child link="proximity_${side}_link"/>
     </joint>
 
     <!--
@@ -36,8 +35,4 @@
     <xacro:gazebo_sensor name="proximity_${side}" angle="${2 / 180 * pi}"
                          min_range="0.005941" max_range="0.05" type="infrared"/>
   </xacro:macro>
-
-  <xacro:infrared side="left" reflect="1"/>
-  <xacro:infrared side="right" reflect="-1"/>
-
 </robot>

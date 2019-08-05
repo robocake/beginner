@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
   <xacro:macro name="wheel" params="prefix reflect">
-    <link name="${prefix}_wheel">
+    <link name="${prefix}_wheel_link">
       <xacro:mesh_visual name="wheel"/>
       <collision>
         <origin xyz="0.000998 0.000001 -0.000002" rpy="0 ${pi / 2} 0"/>
@@ -17,24 +16,20 @@
                                                          izz="0.000272"/>
     </link>
 
-    <joint name="${prefix}_wheel_to_base" type="continuous">
-      <parent link="base"/>
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
       <origin xyz="0.00002 ${reflect * 0.042459} -0.020922"
               rpy="0 0 ${reflect * pi / 2}"/>
       <axis xyz="${reflect} 0 0"/>
-      <child link="${prefix}_wheel"/>
+      <child link="${prefix}_wheel_link"/>
     </joint>
 
     <transmission name="${prefix}_wheel_transmission">
       <type>transmission_interface/SimpleTransmission</type>
       <actuator name="${prefix}_wheel_actuator"/>
-      <joint name="${prefix}_wheel_to_base">
+      <joint name="${prefix}_wheel_joint">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
     </transmission>
   </xacro:macro>
-
-  <xacro:wheel prefix="left" reflect="1"/>
-  <xacro:wheel prefix="right" reflect="-1"/>
-
 </robot>

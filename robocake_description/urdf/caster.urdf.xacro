@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
   <xacro:macro name="caster" params="prefix reflect">
-    <link name="${prefix}_caster">
+    <link name="${prefix}_caster_link">
       <xacro:mesh_visual name="caster"/>
       <collision>
         <geometry>
@@ -16,31 +15,32 @@
                                                          izz="0.129104"/>
     </link>
 
-    <joint name="${prefix}_caster_x" type="continuous">
-      <parent link="base"/>
+    <!--
+        Since the ball caster has three degrees of freedom while continuous
+        joint only has one, it is implemented as three separate joints connected
+        with dummy links.
+    -->
+    <xacro:dummy_link name="${prefix}_caster_x_to_y_link"/>
+
+    <joint name="${prefix}_caster_x_joint" type="continuous">
+      <parent link="base_link"/>
       <origin xyz="${reflect * 0.049191} 0 -0.036909"/>
       <axis xyz="1 0 0"/>
-      <child link="${prefix}_caster_x_to_y"/>
+      <child link="${prefix}_caster_x_to_y_link"/>
     </joint>
 
-    <xacro:dummy_link name="${prefix}_caster_x_to_y"/>
+    <xacro:dummy_link name="${prefix}_caster_y_to_z_link"/>
 
-    <joint name="${prefix}_caster_y" type="continuous">
-      <parent link="${prefix}_caster_x_to_y"/>
+    <joint name="${prefix}_caster_y_joint" type="continuous">
+      <parent link="${prefix}_caster_x_to_y_link"/>
       <axis xyz="0 1 0"/>
-      <child link="${prefix}_caster_y_to_z"/>
+      <child link="${prefix}_caster_y_to_z_link"/>
     </joint>
 
-    <xacro:dummy_link name="${prefix}_caster_y_to_z"/>
-
-    <joint name="${prefix}_caster_z" type="continuous">
-      <parent link="${prefix}_caster_y_to_z"/>
+    <joint name="${prefix}_caster_z_joint" type="continuous">
+      <parent link="${prefix}_caster_y_to_z_link"/>
       <axis xyz="0 0 1"/>
-      <child link="${prefix}_caster"/>
+      <child link="${prefix}_caster_link"/>
     </joint>
   </xacro:macro>
-
-  <xacro:caster prefix="front" reflect="1"/>
-  <xacro:caster prefix="back" reflect="-1"/>
-
 </robot>
