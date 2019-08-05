@@ -2,7 +2,6 @@ type: "diff_drive_controller/DiffDriveController"
 
 left_wheel: "left_wheel_to_base"
 right_wheel: "right_wheel_to_base"
-wheel_radius: 0.022
 
 pose_covariance_diagonal:  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 twist_covariance_diagonal: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]

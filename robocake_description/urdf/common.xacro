@@ -1,30 +1,20 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="mesh_geometry" params="name use_collision_mesh:=true">
-    <xacro:property name="visual_mesh" value="visual/${name}.dae"/>
-
-    <!--
-        If use_collision_mesh is true (defaut), use a separate simplified mesh
-        for collision detection from /collision/ subdirectory. Otherwise, use
-        the same mesh as the one displayed visually.
-    -->
-    <xacro:if value="${use_collision_mesh}">
-      <xacro:property name="collision_mesh" value="collision/${name}.dae"/>
-    </xacro:if>
-    <xacro:unless value="${use_collision_mesh}">
-      <xacro:property name="collision_mesh" value="${visual_mesh}"/>
-    </xacro:unless>
-
+  <xacro:macro name="mesh_visual" params="name">
     <visual>
       <geometry>
-        <mesh filename="package://robocake_description/meshes/${visual_mesh}"/>
+        <mesh
+          filename="package://robocake_description/meshes/visual/${name}.dae"/>
       </geometry>
     </visual>
+  </xacro:macro>
+
+  <xacro:macro name="mesh_collision" params="name">
     <collision>
       <geometry>
         <mesh
-          filename="package://robocake_description/meshes/${collision_mesh}"/>
+          filename="package://robocake_description/meshes/collision/${name}.dae"/>
       </geometry>
     </collision>
   </xacro:macro>

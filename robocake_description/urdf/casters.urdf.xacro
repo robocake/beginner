@@ -3,7 +3,12 @@
 
   <xacro:macro name="caster" params="prefix reflect">
     <link name="${prefix}_caster">
-      <xacro:mesh_geometry name="caster" use_collision_mesh="false"/>
+      <xacro:mesh_visual name="caster"/>
+      <collision>
+        <geometry>
+          <sphere radius="0.005995"/>
+        </geometry>
+      </collision>
       <xacro:mesh_inertia mass="0.01" scaling="100" volume="0.899919"
                           x="0.000007" y="0.000028" z="-0.000015"
                           ixx="0.129151" ixy="-0.000001" ixz="0"

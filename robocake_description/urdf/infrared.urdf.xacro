@@ -7,7 +7,13 @@
   -->
   <xacro:macro name="infrared" params="side reflect">
     <link name="proximity_${side}">
-      <xacro:mesh_geometry name="infrared"/>
+      <xacro:mesh_visual name="infrared"/>
+      <collision>
+        <origin xyz="0.001551 -0.000007 -0.001367"/>
+        <geometry>
+          <box size="0.007902 0.00630 0.013642"/>
+        </geometry>
+      </collision>
       <xacro:mesh_inertia mass="0.01" scaling="100" volume="0.943720"
                         x="0.006637" y="-0.000480" z="-0.183167"
                         ixx="0.236973" ixy="-0.000042" ixz="-0.005641"
@@ -17,7 +23,7 @@
 
     <joint name="proximity_${side}_to_base" type="fixed">
       <parent link="base"/>
-      <origin xyz="0.035447 ${reflect * -0.06118} 0.005715"
+      <origin xyz="0.034096 ${reflect * -0.058848} 0.005497"
               rpy="0 0 ${reflect * 5 / 3 * pi}"/>
       <child link="proximity_${side}"/>
     </joint>

@@ -6,7 +6,8 @@
       See https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
   -->
   <link name="proximity_front">
-    <xacro:mesh_geometry name="ultrasonic"/>
+    <xacro:mesh_visual name="ultrasonic"/>
+    <xacro:mesh_collision name="ultrasonic"/>
     <xacro:mesh_inertia mass="0.02" scaling="10" volume="0.005512"
                         x="0.002263" y="-0.000840" z="0.013641"
                         ixx="0.000112" ixy="0"        ixz="0"

@@ -3,7 +3,13 @@
 
   <xacro:macro name="wheel" params="prefix reflect">
     <link name="${prefix}_wheel">
-      <xacro:mesh_geometry name="wheel"/>
+      <xacro:mesh_visual name="wheel"/>
+      <collision>
+        <origin xyz="0.000998 0.000001 -0.000002" rpy="0 ${pi / 2} 0"/>
+        <geometry>
+          <cylinder radius="0.022131" length="0.017986"/>
+        </geometry>
+      </collision>
       <xacro:mesh_inertia mass="0.03" scaling="10" volume="0.015398"
                           x="0.010317" y="-0.000083" z="-0.000017"
                           ixx="0.000466" ixy="0"         ixz="0"
