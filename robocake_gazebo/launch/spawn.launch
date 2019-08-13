@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 <launch>
-  <include file="$(find robocake_description)/launch/upload.launch"/>
-  <include file="$(find robocake_controllers)/launch/diffdrive.launch"/>
-  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-x 1 -urdf -model robocake -param robot_description"/>
+  <arg name="robot_name" default="robocake"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <group ns="$(arg robot_name)">
+    <include file="$(find robocake_description)/launch/upload.launch"/>
+    <include file="$(find robocake_controllers)/launch/diffdrive.launch"/>
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+          args="-x $(arg x) -y $(arg y) -urdf -model $(arg robot_name)
+                -param robot_description"/>
+  </group>
 </launch>
