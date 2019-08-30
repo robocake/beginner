@@ -21,7 +21,9 @@
       <child link="proximity_front_link"/>
     </joint>
 
-    <xacro:gazebo_sensor name="proximity_front" angle="${5 / 180 * pi}"
-                       min_range="0.02" max_range="4" type="ultrasound"/>
+    <xacro:gazebo_proximity_sensor name="proximity_front"
+                                   angle="${5 / 180 * pi}"
+                                   min_range="0.02" max_range="0.8"
+                                   type="ultrasound"/>
   </xacro:macro>
 </robot>

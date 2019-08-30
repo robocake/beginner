@@ -64,11 +64,11 @@
       for horizontal, bottom/center/top for vertical) seem to work well enough
       for small angles.
   -->
-  <xacro:macro name="gazebo_sensor"
+  <xacro:macro name="gazebo_proximity_sensor"
                params="name angle min_range max_range type">
     <gazebo reference="${name}_link">
       <sensor type="ray" name="${name}_sensor">
-        <visualize>true</visualize>
+        <visualize>false</visualize>
         <ray>
           <scan>
             <horizontal>

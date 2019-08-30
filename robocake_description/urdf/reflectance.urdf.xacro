@@ -9,7 +9,7 @@
       <xacro:mesh_visual name="reflectance"/>
       <collision>
         <geometry>
-          <box size="0.0145 0.008 0.002"/>
+          <box size="0.002 0.008 0.0145"/>
         </geometry>
       </collision>
       <xacro:mesh_inertia mass="0.01" scaling="100" volume="0.201368"
@@ -23,8 +23,28 @@
       <parent link="base_link"/>
       <origin xyz="${0.085334 if reflect else 0.028881}
                    ${reflect * 0.027562}
-                   -0.031259"/>
+                   -0.031259"
+              rpy="0 ${pi / 2} 0"/>
       <child link="reflectance_${side}_link"/>
     </joint>
+
+    <gazebo reference="reflectance_${side}_link">
+      <sensor type="camera" name="${side}_camera">
+        <visualize>false</visualize>
+        <camera name="${side}_camera">
+          <clip>
+            <near>0.001</near>
+          </clip>
+          <image>
+            <width>1</width>
+            <height>1</height>
+          </image>
+        </camera>
+        <plugin name="gazebo_ros_camera" filename="libgazebo_ros_camera.so">
+          <cameraName>${side}_camera</cameraName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
   </xacro:macro>
 </robot>

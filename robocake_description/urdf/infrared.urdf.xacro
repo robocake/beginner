@@ -32,7 +32,9 @@
         the chassis. With min_range set to zero, the chassis would be within the
         sensor's range.
     -->
-    <xacro:gazebo_sensor name="proximity_${side}" angle="${2 / 180 * pi}"
-                         min_range="0.005941" max_range="0.05" type="infrared"/>
+    <xacro:gazebo_proximity_sensor name="proximity_${side}"
+                                   angle="${2 / 180 * pi}"
+                                   min_range="0.005941" max_range="0.05"
+                                   type="infrared"/>
   </xacro:macro>
 </robot>
