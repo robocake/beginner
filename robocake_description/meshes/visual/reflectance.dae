@@ -14,17 +14,29 @@
     <effect id="Material-effect">
       <profile_COMMON>
         <technique sid="common">
-          <lambert>
+          <phong>
             <emission>
               <color sid="emission">0 0 0 1</color>
             </emission>
+            <ambient>
+              <color sid="ambient">0.509 0.002 0.009 1</color>
+            </ambient>
             <diffuse>
-              <color sid="diffuse">0.5647119 0.01444377 0.01444385 1</color>
+              <color sid="diffuse">0.509 0.002 0.009 1</color>
             </diffuse>
+            <specular>
+              <color sid="specular">0.509 0.002 0.009 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2</float>
+            </shininess>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 0</color>
+            </transparent>
             <index_of_refraction>
-              <float sid="ior">1.45</float>
+              <float sid="index_of_refraction">1</float>
             </index_of_refraction>
-          </lambert>
+          </phong>
         </technique>
       </profile_COMMON>
     </effect>
