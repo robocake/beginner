@@ -36,12 +36,14 @@
             <near>0.001</near>
           </clip>
           <image>
-            <width>1</width>
-            <height>1</height>
+            <width>4</width>
+            <height>4</height>
+            <format>R8G8B8</format>
           </image>
         </camera>
-        <plugin name="gazebo_ros_camera" filename="libgazebo_ros_camera.so">
-          <cameraName>${side}_camera</cameraName>
+        <plugin name="reflectance_sensor"
+                filename="libreflectance_sensor_plugin.so">
+          <topicName>reflectance_${side}</topicName>
         </plugin>
       </sensor>
     </gazebo>
