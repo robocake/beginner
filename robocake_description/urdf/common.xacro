@@ -68,6 +68,7 @@
                params="name angle min_range max_range type">
     <gazebo reference="${name}_link">
       <sensor type="ray" name="${name}_sensor">
+        <update_rate>10</update_rate>
         <visualize>false</visualize>
         <ray>
           <scan>

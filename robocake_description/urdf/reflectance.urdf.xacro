@@ -30,6 +30,7 @@
 
     <gazebo reference="reflectance_${side}_link">
       <sensor type="camera" name="${side}_camera">
+        <update_rate>10</update_rate>
         <visualize>false</visualize>
         <camera name="${side}_camera">
           <clip>
