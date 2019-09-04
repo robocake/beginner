@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="robot_name" default="robocake"/>
+  <arg name="robot_name" default="$(anon robocake)"/>
   <arg name="x" default="0"/>
   <arg name="y" default="0"/>
   <group ns="$(arg robot_name)">
