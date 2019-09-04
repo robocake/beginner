@@ -18,7 +18,7 @@ namespace gazebo {
                     unsigned int _depth, const std::string &_format) override {
       std_msgs::Float64 msg;
       auto length = _width * _height * _depth;
-      msg.data = std::accumulate(_image, _image + length, 0.0) / length;
+      msg.data = std::accumulate(_image, _image + length, 0.0) / length / 255;
       this->publisher.publish(msg);
     }
   private:

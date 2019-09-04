@@ -9,6 +9,6 @@
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
           args="-x $(arg x) -y $(arg y) -urdf -model $(arg robot_name)
                 -param robot_description"/>
-    <node name="control" pkg="robocake_algorithm" type="random" output="screen"/>
+    <node name="control" pkg="robocake_algorithm" type="random"/>
   </group>
 </launch>
