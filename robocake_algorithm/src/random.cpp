@@ -46,7 +46,7 @@ void update_reflectance_center(const std_msgs::Float64& msg) {
 int direction{0};
 
 void control(const ros::TimerEvent&) {
-  std::uniform_int_distribution<> d{0, 1};
+  std::uniform_real_distribution<> d{0, 1};
   std::random_device r;
   std::default_random_engine g(r());
   geometry_msgs::Twist msg;
@@ -63,7 +63,10 @@ void control(const ros::TimerEvent&) {
       } else if (proximity["left"] < 0.1 || reflectance["left"] < 0.2) {
         direction = -1;
       } else {
-        direction = d(g) * 2 - 1;
+        direction = d(g) < 0.5 ? 1 : -1;
+      }
+      if (d(g) < 0.2) {
+        direction *= -1;
       }
     }
     msg.linear.x = 0;
