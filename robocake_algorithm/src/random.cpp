@@ -44,6 +44,7 @@ void update_reflectance_center(const std_msgs::Float64& msg) {
 }
 
 int direction{0};
+double threshold;
 
 void control(const ros::TimerEvent&) {
   std::uniform_real_distribution<> d{0, 1};
@@ -52,15 +53,15 @@ void control(const ros::TimerEvent&) {
   geometry_msgs::Twist msg;
   if (proximity["front"] > 0.1 && proximity["left"] > 0.1 &&
       proximity["right"] > 0.1 &&
-      reflectance["left"] > 0.2 && reflectance["right"] > 0.2) {
+      reflectance["left"] > threshold && reflectance["right"] > threshold) {
     direction = 0;
     msg.linear.x = 0.2;
     msg.angular.z = 0;
   } else {
     if (!direction) {
-      if (proximity["right"] < 0.1 || reflectance["right"] < 0.2) {
+      if (proximity["right"] < 0.1 || reflectance["right"] < threshold) {
         direction = 1;
-      } else if (proximity["left"] < 0.1 || reflectance["left"] < 0.2) {
+      } else if (proximity["left"] < 0.1 || reflectance["left"] < threshold) {
         direction = -1;
       } else {
         direction = d(g) < 0.5 ? 1 : -1;
@@ -96,6 +97,8 @@ int main(int argc, char **argv) {
 
   publisher = node.advertise<geometry_msgs::Twist>(
       "diff_drive_controller/cmd_vel", 1);
+
+  threshold = ros::NodeHandle{"~"}.param("threshold", 0.5);
 
   auto timer = node.createTimer(ros::Duration{0.5}, control);
 
