@@ -59,9 +59,9 @@ void control(const ros::TimerEvent&) {
   } else {
     if (!direction) {
       if (proximity["right"] < 0.1 || reflectance["right"] < 0.2) {
-        direction = -1;
-      } else if (proximity["left"] < 0.1 || reflectance["left"] < 0.2) {
         direction = 1;
+      } else if (proximity["left"] < 0.1 || reflectance["left"] < 0.2) {
+        direction = -1;
       } else {
         direction = d(g) * 2 - 1;
       }
