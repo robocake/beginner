@@ -34,7 +34,7 @@
     -->
     <xacro:gazebo_proximity_sensor name="proximity_${side}"
                                    angle="${2 / 180 * pi}"
-                                   min_range="0.005941" max_range="0.05"
+                                   min_range="0.005941" max_range="0.1"
                                    type="infrared"/>
   </xacro:macro>
 </robot>

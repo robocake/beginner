@@ -50,17 +50,17 @@ void control(const ros::TimerEvent&) {
   std::random_device r;
   std::default_random_engine g(r());
   geometry_msgs::Twist msg;
-  if (proximity["front"] > 0.1 && proximity["left"] > 0.05 &&
-      proximity["right"] > 0.05 &&
+  if (proximity["front"] > 0.1 && proximity["left"] > 0.1 &&
+      proximity["right"] > 0.1 &&
       reflectance["left"] > 0.2 && reflectance["right"] > 0.2) {
     direction = 0;
     msg.linear.x = 0.2;
     msg.angular.z = 0;
   } else {
     if (!direction) {
-      if (proximity["right"] < 0.05 || reflectance["right"] < 0.2) {
+      if (proximity["right"] < 0.1 || reflectance["right"] < 0.2) {
         direction = -1;
-      } else if (proximity["left"] < 0.05 || reflectance["left"] < 0.2) {
+      } else if (proximity["left"] < 0.1 || reflectance["left"] < 0.2) {
         direction = 1;
       } else {
         direction = d(g) * 2 - 1;
