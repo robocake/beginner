@@ -2,5 +2,5 @@
 <launch>
   <param name="robot_description"
          command="$(find xacro)/xacro --inorder
-                  $(find robocake_description)/robots/robocake.urdf.xacro"/>
+                  $(find robocake_description)/robots/green.urdf.xacro"/>
 </launch>

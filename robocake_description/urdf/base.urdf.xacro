@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robocake">
-  <xacro:macro name="base">
+  <xacro:macro name="base" params="name">
     <link name="base_link">
-      <xacro:mesh_visual name="base"/>
-      <xacro:mesh_collision name="base"/>
+      <xacro:mesh_visual name="base_${name}"/>
+      <xacro:mesh_collision name="base_${name}"/>
       <xacro:mesh_inertia mass="0.5" scaling="10" volume="0.213995"
                           x="0.006792" y="0.000060" z="0.016779"
                           ixx="0.057859" ixy="0.000003" ixz="0.000809"

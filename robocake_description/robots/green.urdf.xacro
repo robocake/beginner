@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robocake">
+
+  <xacro:include filename="$(find robocake_description)/urdf/common.xacro"/>
+
+  <xacro:include filename="$(find robocake_description)/urdf/base.urdf.xacro"/>
+  <xacro:include filename="$(find robocake_description)/urdf/wheel.urdf.xacro"/>
+  <xacro:include
+    filename="$(find robocake_description)/urdf/caster.urdf.xacro"/>
+  <xacro:include
+    filename="$(find robocake_description)/urdf/ultrasonic.urdf.xacro"/>
+  <xacro:include
+    filename="$(find robocake_description)/urdf/infrared.urdf.xacro"/>
+  <xacro:include
+    filename="$(find robocake_description)/urdf/reflectance.urdf.xacro"/>
+
+  <xacro:base name="green"/>
+
+  <xacro:wheel prefix="left" reflect="1"/>
+  <xacro:wheel prefix="right" reflect="-1"/>
+
+  <xacro:caster prefix="front" reflect="1"/>
+  <xacro:caster prefix="back" reflect="-1"/>
+
+  <xacro:ultrasonic/>
+
+  <xacro:infrared side="left" reflect="-1"/>
+  <xacro:infrared side="right" reflect="1"/>
+
+  <xacro:reflectance side="left" reflect="1"/>
+  <xacro:reflectance side="center" reflect="0"/>
+  <xacro:reflectance side="right" reflect="-1"/>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+</robot>
