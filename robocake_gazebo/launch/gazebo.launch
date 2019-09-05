@@ -3,5 +3,4 @@
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find robocake_gazebo)/worlds/room.world"/>
   </include>
-  <include file="$(find robocake_gazebo)/launch/spawn.launch"/>
 </launch>
