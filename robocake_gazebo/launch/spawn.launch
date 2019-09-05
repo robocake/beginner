@@ -17,5 +17,9 @@
           if="$(eval model == 'green')">
       <param name="threshold" value="0.5"/>
     </node>
+    <node name="control" pkg="robocake_algorithm" type="follow"
+          if="$(eval model == 'orange')">
+      <param name="threshold" value="0.05"/>
+    </node>
   </group>
 </launch>

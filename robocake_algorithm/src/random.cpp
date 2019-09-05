@@ -1,52 +1,11 @@
-#include <ros/ros.h>
-#include <geometry_msgs/Twist.h>
-#include <sensor_msgs/Range.h>
-#include <std_msgs/Float64.h>
-
-#include <cmath>
-#include <unordered_map>
-
-std::unordered_map<std::string, double> proximity, reflectance;
-ros::Publisher publisher;
-
-void update_proximity(std::string direction, double value) {
-  proximity[direction] = value;
-}
-
-void update_reflectance(std::string direction, double value) {
-  reflectance[direction] = value;
-}
-
-
-void update_proximity_left(const sensor_msgs::Range& msg) {
-  update_proximity("left", msg.range);
-}
-
-void update_proximity_right(const sensor_msgs::Range& msg) {
-  update_proximity("right", msg.range);
-}
-
-void update_proximity_front(const sensor_msgs::Range& msg) {
-  update_proximity("front", msg.range);
-}
-
-
-void update_reflectance_left(const std_msgs::Float64& msg) {
-  update_reflectance("left", msg.data);
-}
-
-void update_reflectance_right(const std_msgs::Float64& msg) {
-  update_reflectance("right", msg.data);
-}
-
-void update_reflectance_center(const std_msgs::Float64& msg) {
-  update_reflectance("center", msg.data);
-}
+#include "algorithm.h"
 
 int direction{0};
-double threshold;
 
-void control(const ros::TimerEvent&) {
+geometry_msgs::Twist control(
+                     std::unordered_map<std::string, double> proximity,
+                     std::unordered_map<std::string, double> reflectance,
+                     double threshold) {
   std::uniform_real_distribution<> d{0, 1};
   std::random_device r;
   std::default_random_engine g(r());
@@ -73,34 +32,5 @@ void control(const ros::TimerEvent&) {
     msg.linear.x = 0;
     msg.angular.z = direction * M_PI / 2;
   }
-  publisher.publish(msg);
-}
-
-
-int main(int argc, char **argv) {
-  ros::init(argc, argv, "robocake_random");
-  ros::NodeHandle node;
-
-  auto proximity_left_subscriber = node.subscribe("proximity_left", 1,
-                                                  update_proximity_left);
-  auto proximity_right_subscriber = node.subscribe("proximity_right", 1,
-                                                   update_proximity_right);
-  auto proximity_front_subscriber = node.subscribe("proximity_front", 1,
-                                                   update_proximity_front);
-
-  auto reflectance_left_subscriber = node.subscribe("reflectance_left", 1,
-                                                    update_reflectance_left);
-  auto reflectance_right_subscriber = node.subscribe("reflectance_right", 1,
-                                                     update_reflectance_right);
-  auto reflectance_center_subscriber = node.subscribe("reflectance_center", 1,
-                                                     update_reflectance_center);
-
-  publisher = node.advertise<geometry_msgs::Twist>(
-      "diff_drive_controller/cmd_vel", 1);
-
-  threshold = ros::NodeHandle{"~"}.param("threshold", 0.5);
-
-  auto timer = node.createTimer(ros::Duration{0.5}, control);
-
-  ros::spin();
+  return msg;
 }
