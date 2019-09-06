@@ -19,7 +19,7 @@
     </node>
     <node name="control" pkg="robocake_algorithm" type="follow"
           if="$(eval model == 'orange')">
-      <param name="threshold" value="0.05"/>
+      <param name="threshold" value="0.2"/>
     </node>
   </group>
 </launch>

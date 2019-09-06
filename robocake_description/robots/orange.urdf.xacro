@@ -27,10 +27,6 @@
   <xacro:infrared side="left" reflect="-1"/>
   <xacro:infrared side="right" reflect="1"/>
 
-  <xacro:reflectance side="left" reflect="1"/>
-  <xacro:reflectance side="center" reflect="0"/>
-  <xacro:reflectance side="right" reflect="-1"/>
-
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <legacyModeNS>true</legacyModeNS>
