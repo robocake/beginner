@@ -21,7 +21,7 @@ geometry_msgs::Twist control(
     msg.angular.z = -1;
   }
   if (distance > 0) {
-    auto v = std::min(std::abs(distance - threshold) / 0.05, 1.0) * 0.2;
+    auto v = std::min(std::abs(distance - threshold) / 0.1, 1.0) * 0.25;
     msg.linear.x = distance < threshold ? -v : v;
   } else {
     msg.angular.z = search_direction * 0.5;
