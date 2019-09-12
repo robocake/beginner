@@ -30,7 +30,7 @@
             <shininess>
               <float sid="shininess">4</float>
             </shininess>
-            <transparent opaque="A_ONE">
+            <transparent opaque="RGB_ZERO">
               <color>1 1 1 0</color>
             </transparent>
             <index_of_refraction>
@@ -50,7 +50,7 @@
             <diffuse>
               <color sid="diffuse">0.286275 0.662745 0.329412 1</color>
             </diffuse>
-            <transparent opaque="A_ONE">
+            <transparent opaque="RGB_ZERO">
               <color sid="alpha">0 0 0 0</color>
             </transparent>
             <index_of_refraction>

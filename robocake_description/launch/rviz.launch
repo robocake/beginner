@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-  <include file="$(find robocake_description)/launch/upload.launch"/>
+  <arg name="model"/>
+  <include file="$(find robocake_description)/launch/upload.launch"
+           pass_all_args="true"/>
   <node name="rviz" pkg="rviz" type="rviz"
         args="-d $(find robocake_description)/launch/robocake.rviz"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher"
