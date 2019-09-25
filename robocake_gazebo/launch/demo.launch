@@ -3,9 +3,11 @@
   <include file="$(find robocake_gazebo)/launch/gazebo.launch"/>
   <include file="$(find robocake_gazebo)/launch/spawn.launch">
     <arg name="model" value="orange"/>
+    <arg name="algorithm" value="true"/>
   </include>
   <include file="$(find robocake_gazebo)/launch/spawn.launch">
     <arg name="model" value="green"/>
+    <arg name="algorithm" value="true"/>
     <arg name="x" value="0.5"/>
   </include>
 </launch>
