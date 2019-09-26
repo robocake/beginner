@@ -2,7 +2,8 @@
 
 ![Robocake models](1.png)
 
-Programming Robocake robots using ROS in a Gazebo simulated environment.
+Programming Robocake robots using [ROS](https://www.ros.org/) in a
+[Gazebo](http://gazebosim.org/) simulated environment.
 
 ## Prerequisites
 
@@ -149,3 +150,52 @@ The controller converts linear and angular velocity commands into wheel
 movements. It accepts input on the `cmd_vel` topic. See the
 [tutorial](http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics) on
 understanding ROS topics.
+
+To control a robot directly, `rqt_robot_steering` can be used.
+
+`rosrun rqt_robot_steering rqt_robot_steering`
+
+This opens a window with robot controls.
+
+![rqt\_robot\_steering](4.png)
+
+The topic of the associated robot needs to be put into the input field. It has
+the form `/<robot_name>/diff_drive_controller/cmd_vel`. `<robot_name>` is either
+generated automatically or is passed as a parameter to `spawn.launch`. Use
+`rostopic list` from a terminal to list all topics and find the needed one.
+
+For an example of controlling a robot programmatically, see the C++ code in
+`robocake_algorithm`.
+
+### robocake\_algorithm
+
+This package contains two ROS executables ([nodes](https://wiki.ros.org/Nodes))
+that give certain behavior to the robots. For more information on creating and
+running nodes, see tutorials for
+[C++](https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B) and
+[Python](https://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(python).
+
+The behavior associated with the green robot is defined in `random.cpp`.
+The algorithm drives the robot around the white area on the floor, turning in a
+random direction once it reaches the edge of the dark area.
+
+The algorithm for the orange robot is defined in `follow.cpp` and makes it
+follow another robot at a certain distance, while trying to avoid collisions.
+
+To spawn a robot with an algorithm running, use the `algorithm:=true` argument.
+
+`roslaunch robocake_gazebo spawn.launch model:=green algorithm:=true`
+
+To create nodes for other algorithms, see the tutorials linked above. For C++,
+the rough steps are the following:
+
+- Write a `.cpp` file with a main function as shown in the tutorial.
+
+- Add corresponding entries to `CMakeLists.txt` (`add_executable`,
+`target_link_libraries` and optionally `set_target_properties`).
+
+- Build the package by running `catkin_make` from the workspace root
+(`~/catkin_ws`).
+
+- Run the node using `rosrun robocake_algorithm <node_name>` or by editing one
+of the launch files to run it automatically.
