@@ -18,6 +18,10 @@ Requirements:
   ([instructions](https://wiki.ros.org/kinetic/Installation/Ubuntu))
 - Gazebo 7
   ([instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install))
+- Additional dependencies:
+
+  `sudo apt install ros-kinetic-ros-control ros-kinetic-ros-controllers
+  ros-kinetic-gazebo-ros-control`
 
 ## Setup
 
